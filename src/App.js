@@ -6,6 +6,7 @@ import titleTopItem from './assets/1-2.png';
 import titleBottom from './assets/2-2.png';
 import titleFooter from './assets/3.png';
 import axios from 'axios';
+import back_logo from './assets/back.png'
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -16,18 +17,16 @@ function App() {
     groupOrPosition: '',
   });
 
-  const TELEGRAM_BOT_TOKEN = '7964767216:AAExtiz5JR-H40tbQzP3G6LETUznlzqip3A'; // Токен бота
-  const TELEGRAM_CHAT_ID = '1603524317'; // Замените на ваш chat_id
+  const TELEGRAM_BOT_TOKEN = '7964767216:AAExtiz5JR-H40tbQzP3G6LETUznlzqip3A'; 
+  const TELEGRAM_CHAT_ID = '7449665353'; 
 
-  // Обработка изменения роли
   const handleRoleChange = (event) => {
     const role = event.target.value;
     setSelectedRole(role);
-    setFormData({ firstName: '', lastName: '', groupOrPosition: '' }); // Сброс данных формы
+    setFormData({ firstName: '', lastName: '', groupOrPosition: '' }); 
     setModalOpen(true);
   };
 
-  // Обработка изменения данных в форме
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
@@ -36,18 +35,15 @@ function App() {
     }));
   };
 
-  // Открытие/закрытие модала
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
   };
 
-  // Закрытие модала
   const closeModal = () => {
     setModalOpen(false);
     setSelectedRole('');
   };
 
-  // Отправка данных в Telegram
   const sendToTelegram = async (message) => {
     const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
     try {
@@ -62,7 +58,6 @@ function App() {
     }
   };
 
-  // Обработка отправки формы
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -115,7 +110,9 @@ function App() {
 
           <div className="title-location-description">
             <h1>Место:</h1>
-            <p>Абая 104</p>
+            <p>Глинки 40</p>
+            <h1>Время:</h1>
+            <p>15:00</p>
           </div>
 
           <div className="title-item-bottom">
@@ -124,7 +121,7 @@ function App() {
         </div>
 
         <div className="title-item-middle">
-          <h1>Innovative College</h1>
+            <img src={back_logo} alt='z'/>
           <div className="title-item-top">
             <img src={titleTopItem} alt="Элемент по центру" />
           </div>
